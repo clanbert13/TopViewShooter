@@ -17,7 +17,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         timer = 0.0f;
-        this.transform.rotation = Quaternion.Euler(0, startAngle, 0); //탄의 시작 각도 설정
+        //탄의 시작 각도 설정
+        this.transform.rotation = Quaternion.Euler(0, startAngle, 0);
         this.gameObject.SetActive(true); //탄을 활성화
     }
 
@@ -39,13 +40,17 @@ public class Bullet : MonoBehaviour
     }
 
     // 생성할때 해당 정보들 입력하시면 됩니다.
-    public Bullet(float speed, float frequency, float amplitude, string targetTag, float endTime, float startAngle, int moveType)
+    public Bullet(float speed, float frequency, float amplitude, string targetTag, 
+                                    float endTime, float startAngle, int moveType)
     {
         //Debug.Log("Bullet 생성자 호출됨");
-        SetBullet(speed, frequency, amplitude, targetTag, endTime, startAngle, moveType);
+        SetBullet(speed, frequency, amplitude, 
+        targetTag, endTime, startAngle, moveType);
+
     }
 
-    protected void SetBullet(float speed, float frequency, float amplitude, string targetTag, float endTime, float startAngle, int moveType)
+    protected void SetBullet(float speed, float frequency, float amplitude, 
+            string targetTag, float endTime, float startAngle, int moveType)
     {
         this.speed = speed;
         this.frequency = frequency;
@@ -72,7 +77,8 @@ public class Bullet : MonoBehaviour
             case 1:
                 //탄이 흔들리며 이동
                 //Debug.Log("곡선 이동 패턴입니다.");
-                transform.position += new Vector3(Mathf.Cos(timer * frequency) * amplitude, 0, speed) * Time.deltaTime;
+                transform.position += new Vector3(Mathf.Cos(timer * frequency) 
+                                        * amplitude, 0, speed) * Time.deltaTime;
                 break;
             default:
                 Debug.Log("잘못된 이동 패턴입니다.");
