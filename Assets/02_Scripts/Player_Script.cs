@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Character_Script
+public class Player_Script : Character_Script
 {
 	enum Status
     {
@@ -12,11 +12,12 @@ public class PlayerController : Character_Script
     private PlayerInput playerInput;
     private InputAction inputAction;
     private Vector3 playerDirection;
-    private Status playerStatus = Status.IDLE;
+    private Status playerStatus;
 
     [SerializeField] private Camera playerCamera;
     private void Start()
     {
+        playerStatus = Status.IDLE;
         playerInput = GetComponent<PlayerInput>();
         inputAction = playerInput.actions["MOVE"];
         inputAction.performed += OnMOVEAction_performed;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet_Script : MonoBehaviour
 {
     private float timer;                //탄이 발사된 후의 시간
     [SerializeField] private string targetTag;           //탄이 피해를 입힐 적의 tag
@@ -34,13 +34,13 @@ public class Bullet : MonoBehaviour
         MovePattern(moveType);
     }
 
-    public Bullet()
+    public Bullet_Script()
     {
         //Debug.Log("Bullet 기본 생성자 호출됨");
     }
 
     // 생성할때 해당 정보들 입력하시면 됩니다.
-    public Bullet(float speed, float frequency, float amplitude, string targetTag, 
+    public Bullet_Script(float speed, float frequency, float amplitude, string targetTag, 
                                     float endTime, float startAngle, int moveType)
     {
         //Debug.Log("Bullet 생성자 호출됨");
