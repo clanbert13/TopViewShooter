@@ -5,7 +5,7 @@ public class Bullet_Script : MonoBehaviour
     private float timer;                //탄이 발사된 후의 시간
     [SerializeField] private string targetTag;           //탄이 피해를 입힐 적의 tag
     [SerializeField] private float endTime = 10.0f;        //탄의 소멸 시간
-    [SerializeField] private float startAngle = 0.0f;    //탄의 시작 각도
+    private Vector3 startAngle;    //탄의 시작 각도
     [SerializeField] protected float speed = 5f;         //탄의 속도
     [SerializeField] protected float frequency = 0f;     //탄의 흔들림 주기
     [SerializeField] protected float amplitude = 0f;     //탄의 흔들림 진폭
@@ -17,20 +17,13 @@ public class Bullet_Script : MonoBehaviour
     void Start()
     {
         timer = 0.0f;
-        //탄의 시작 각도 설정
-        this.transform.rotation = Quaternion.Euler(0, startAngle, 0);
         this.gameObject.SetActive(true); //탄을 활성화
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= endTime)
-        {
-            //복제(institate) & 삭제보다 활성화 & 비활성화가 더 빠릅니다.
-            this.gameObject.SetActive(false);       //탄을 비활성화
-            timer = 0;
-        }
+        ActiveTimer(); //탄의 활성화 시간 체크
         MovePattern(moveType);
     }
 
@@ -40,17 +33,17 @@ public class Bullet_Script : MonoBehaviour
     }
 
     // 생성할때 해당 정보들 입력하시면 됩니다.
-    public Bullet_Script(float speed, float frequency, float amplitude, string targetTag, 
-                                    float endTime, float startAngle, int moveType)
+    public Bullet_Script(float speed, float frequency, float amplitude, 
+        string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
     {
         //Debug.Log("Bullet 생성자 호출됨");
         SetBullet(speed, frequency, amplitude, 
-        targetTag, endTime, startAngle, moveType);
+        targetTag, endTime, startAngle, startPos, moveType);
 
     }
 
-    protected void SetBullet(float speed, float frequency, float amplitude, 
-            string targetTag, float endTime, float startAngle, int moveType)
+    public void SetBullet(float speed, float frequency, float amplitude, 
+            string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
     {
         this.speed = speed;
         this.frequency = frequency;
@@ -59,10 +52,17 @@ public class Bullet_Script : MonoBehaviour
         this.endTime = endTime;
         this.startAngle = startAngle;
         this.moveType = moveType;
+        this.transform.position = startPos; //탄의 시작 위치 설정
+        this.transform.rotation = Quaternion.LookRotation(startAngle); //탄의 시작 각도 설정
     }
     public void ActiveTimer()
     {
-        
+        if (timer >= endTime)
+        {
+            //복제(institate) & 삭제보다 활성화 & 비활성화가 더 빠릅니다.
+            this.gameObject.SetActive(false);       //탄을 비활성화
+            timer = 0;
+        }
     }
 
     public void MovePattern(int type)

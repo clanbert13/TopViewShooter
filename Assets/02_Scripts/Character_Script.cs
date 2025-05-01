@@ -5,7 +5,7 @@ public class Character_Script : MonoBehaviour
 {
     [SerializeField] protected float characterSpeed = 5f; // 캐릭터 이동 속도
     protected float health;
-    protected float maxHealth;
+    [SerializeField] protected float maxHealth;
     
     void Start()
     {
@@ -17,7 +17,13 @@ public class Character_Script : MonoBehaviour
         
     }
 
-    public void GetHit(float damage)
+    protected void Move(Vector3 direction)      // 방향을 받아 이동
+    {
+        // 이동 방향을 정규화하여 속도에 곱해줍니다.
+        direction.Normalize();
+        transform.position += direction * characterSpeed * Time.deltaTime;
+    }
+    public virtual void GetHit(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -27,14 +33,8 @@ public class Character_Script : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 direction)
-    {
-        // 이동 방향을 정규화하여 속도에 곱해줍니다.
-        direction.Normalize();
-        transform.position += direction * characterSpeed * Time.deltaTime;
-    }
 
-    public virtual void Attack()
+    public virtual void Attack(Vector3 targetPosition)
     {
         // 공격 로직
     }
@@ -44,5 +44,4 @@ public class Character_Script : MonoBehaviour
         // 죽음 처리 로직
     }
     
-
 }
