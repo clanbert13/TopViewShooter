@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 774664632}
   - component: {fileID: 774664636}
   - component: {fileID: 774664637}
+  - component: {fileID: 774664638}
   m_Layer: 0
   m_Name: Player_Body
   m_TagString: Player
@@ -293,7 +294,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774664630}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c19ae061e8a08a449a0b9016d4394440, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -407,7 +408,34 @@ MonoBehaviour:
   characterSpeed: 5
   maxHealth: 100
   bulletPrefab: {fileID: 3377204920930663019, guid: b8485757f1cd87f42b96fbd08fe5d9bd, type: 3}
-  poolSize: 20
+  poolSize: 15
+--- !u!54 &774664638
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774664630}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

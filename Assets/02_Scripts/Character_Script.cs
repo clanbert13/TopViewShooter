@@ -21,7 +21,7 @@ public class Character_Script : MonoBehaviour
     {
         // 이동 방향을 정규화하여 속도에 곱해줍니다.
         direction.Normalize();
-        transform.position += direction * characterSpeed * Time.deltaTime;
+        this.transform.position += direction * characterSpeed * Time.deltaTime;
     }
     public virtual void GetHit(float damage)
     {
