@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 1664093212}
   - component: {fileID: 1664093211}
   - component: {fileID: 1664093210}
+  - component: {fileID: 1664093214}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -756,12 +757,40 @@ Transform:
   m_GameObject: {fileID: 1664093209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.37, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664093214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664093209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: 6887547098922230149, guid: f78b3972509928f40831a7b033ef1807, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 1216141663472451654
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1216141663472451654
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1664093209}
 --- !u!1 &1991631308
 GameObject:
   m_ObjectHideFlags: 0
