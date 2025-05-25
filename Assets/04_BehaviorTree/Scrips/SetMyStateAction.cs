@@ -5,12 +5,11 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SearchTarget", story: "[Self] Searching for [Target]", category: "Action", id: "dfddb7c3a557330d11ea260f616d3dcf")]
-public partial class SearchTargetAction : Action
+[NodeDescription(name: "Set My State", story: "Set [My] [State]", category: "Action", id: "7ac4d22d8d64721ac86732f139881893")]
+public partial class SetMyStateAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
-    [SerializeReference] public BlackboardVariable<GameObject> Target;
-
+    [SerializeReference] public BlackboardVariable<enemyState> My;
+    [SerializeReference] public BlackboardVariable<enemyState> State;
     protected override Status OnStart()
     {
         return Status.Running;
@@ -18,6 +17,7 @@ public partial class SearchTargetAction : Action
 
     protected override Status OnUpdate()
     {
+        My.Value = State.Value;
         return Status.Success;
     }
 

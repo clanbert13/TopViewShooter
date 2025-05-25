@@ -2,9 +2,9 @@ using System;
 using Unity.Behavior;
 
 [BlackboardEnum]
-public enum EnemyState
+public enum enemyState
 {
-    Idle,
-	Attack,
-	Chase
+    IDLE,
+	ATTACK,
+	CHASE
 }

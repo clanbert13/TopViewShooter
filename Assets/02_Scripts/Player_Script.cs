@@ -86,7 +86,7 @@ public class Player_Script : Character_Script
         }
         return null; // 사용할 수 있는 총알이 없음
     }
-    public override void Attack(Vector3 targetPosition)
+    public override void Attack(Vector3 targetPosition, string targetTag = "Enemy")
     {
         // 총알 발사
         GameObject bullet = GetBulletFromPool();
@@ -98,7 +98,7 @@ public class Player_Script : Character_Script
                                                      - transform.position.y)) - transform.position;
 
             // 총알 설정
-            bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, "Enemy", 2f,
+            bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, targetTag, 2f,
                                         targetDirection, this.transform.position, 0);
             bullet.SetActive(true); // 총알 활성화
         }

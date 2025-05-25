@@ -34,7 +34,7 @@ public class Character_Script : MonoBehaviour
     }
 
 
-    public virtual void Attack(Vector3 targetPosition)
+    public virtual void Attack(Vector3 targetPosition, string targetTag)
     {
         // 공격 로직
     }
