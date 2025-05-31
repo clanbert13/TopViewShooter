@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet_Script : MonoBehaviour
@@ -33,16 +34,16 @@ public class Bullet_Script : MonoBehaviour
     }
 
     // 생성할때 해당 정보들 입력하시면 됩니다.
-    public Bullet_Script(float speed, float frequency, float amplitude, 
+    public Bullet_Script(float speed, float frequency, float amplitude,
         string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
     {
         //Debug.Log("Bullet 생성자 호출됨");
-        SetBullet(speed, frequency, amplitude, 
+        SetBullet(speed, frequency, amplitude,
         targetTag, endTime, startAngle, startPos, moveType);
 
     }
 
-    public void SetBullet(float speed, float frequency, float amplitude, 
+    public void SetBullet(float speed, float frequency, float amplitude,
             string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
     {
         this.speed = speed;
@@ -77,13 +78,25 @@ public class Bullet_Script : MonoBehaviour
             case 1:
                 //탄이 흔들리며 이동
                 //Debug.Log("곡선 이동 패턴입니다.");
-                transform.position += new Vector3(Mathf.Cos(timer * frequency) 
+                transform.position += new Vector3(Mathf.Cos(timer * frequency)
                                         * amplitude, 0, speed) * Time.deltaTime;
                 break;
             default:
                 Debug.Log("잘못된 이동 패턴입니다.");
                 break;
         }
+    }
+    
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(targetTag))
+        {
+            Debug.Log(other.gameObject.tag + "대상과 충돌했습니다.");
+            //충돌한 대상에게 피해
+            other.gameObject.GetComponent<Character_Script>().GetHit(damage);
+
+            this.gameObject.SetActive(false); //탄을 비활성화
+        }
     }
 }

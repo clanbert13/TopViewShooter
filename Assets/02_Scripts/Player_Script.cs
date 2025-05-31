@@ -131,7 +131,7 @@ public class Player_Script : Character_Script
         float input = context.ReadValue<float>();
         if (input > 0f)
         {
-            Attack(mouseScreenPosition); // 공격 메소드 호출
+            Attack(mouseScreenPosition, "Enemy"); // 공격 메소드 호출
         }
     }
 

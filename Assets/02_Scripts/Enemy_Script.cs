@@ -55,7 +55,7 @@ public class Enemy_Script : Character_Script
                                         targetDirection, this.transform.position, 0);
             bullet.SetActive(true); // 총알 활성화
 
-            Debug.Log("firing bullet)");
+            //Debug.Log("firing bullet)");
         }
     }
 }
