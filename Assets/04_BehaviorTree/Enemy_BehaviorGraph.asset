@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: Player_BehaviorGraph Blackboard
+  m_Name: Enemy_BehaviorGraph Blackboard
   m_EditorClassIdentifier: 
   AssetID:
     m_Value0: 17593480515115650039
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: Player_BehaviorGraph Debug Info
+  m_Name: Enemy_BehaviorGraph Debug Info
   m_EditorClassIdentifier: 
   m_CodeBreakPointsList: []
 --- !u!114 &11400000
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
-  m_Name: Player_BehaviorGraph
+  m_Name: Enemy_BehaviorGraph
   m_EditorClassIdentifier: 
   Blackboard: {fileID: -8727682574342616272}
   m_Description: 
@@ -2075,7 +2075,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: Player_BehaviorGraph Blackboard
+  m_Name: Enemy_BehaviorGraph Blackboard
   m_EditorClassIdentifier: 
   VersionTimestamp: 638838201492341470
   AssetID:
@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: Player_BehaviorGraph
+  m_Name: Enemy_BehaviorGraph
   m_EditorClassIdentifier: 
   Graphs:
   - rid: 1216141805996474710
@@ -2266,7 +2266,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 17593480515115650039
           m_Value1: 511421562992668936
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: -7479884918631651437}
         Root:
           rid: 1216141805996474711
         BlackboardReference:

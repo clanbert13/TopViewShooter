@@ -26,8 +26,6 @@ public class Camera_Script : MonoBehaviour
         mousePosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, 
                                                     mousePosition.y, this.transform.position.y));
 
-
-
         // 부드럽게 카메라 위치 이동, 중간지점은 플레이어와 마우스 위치의 중간점
         // lerpVal에 따라 카메라와 플레이어 사이의 거리가 조절됨
         this.transform.position = Vector3.Lerp(player.transform.position, 
