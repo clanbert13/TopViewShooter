@@ -96,7 +96,7 @@ public class Player_Script : Character_Script
             Vector3 targetDirection = playerCamera.ScreenToWorldPoint(new Vector3(targetPosition.x, 
                                         targetPosition.y, playerCamera.transform.position.y
                                                      - transform.position.y)) - transform.position;
-
+            targetDirection.Normalize(); // 방향 벡터 정규화
             // 총알 설정
             bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, targetTag, 2f,
                                         targetDirection, this.transform.position, 0);
