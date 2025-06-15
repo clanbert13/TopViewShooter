@@ -21,8 +21,10 @@ public class Player_Script : Character_Script
     private Rigidbody playerRigidbody;
     private Camera playerCamera;
     private Vector3 mouseScreenPosition; // 마우스 스크린 위치
-
+    
+    [Header("Bullet Settings")]
     [SerializeField] private GameObject bulletPrefab;     // 총알 프리팹
+    [SerializeField] private float bulletEndTime = 3f;  // 총알이 사라지는 시간
     private GameObject[] bulletPool;       // 총알 풀
     public int poolSize = 20;             // 총알 풀의 크기
 
@@ -98,7 +100,7 @@ public class Player_Script : Character_Script
                                                      - transform.position.y)) - transform.position;
             targetDirection.Normalize(); // 방향 벡터 정규화
             // 총알 설정
-            bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, targetTag, 2f,
+            bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, targetTag, bulletEndTime,
                                         targetDirection, this.transform.position, 0);
             bullet.SetActive(true); // 총알 활성화
         }
