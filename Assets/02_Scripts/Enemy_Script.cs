@@ -9,12 +9,15 @@ public class Enemy_Script : Character_Script
     public float damage = 1f;           // 총알 피해량
     public int poolSize = 5;             // 총알 풀의 크기
     public int bulletType = 0;           // 총알 타입 (이동 형태)
-    
+
 
     void Start()
     {
         // 캐릭터의 체력 초기화
         health = maxHealth;
+
+        bulletType = Random.Range(0, 2);
+
         // 총알 풀 초기화
         bulletPoolInit();
     }
@@ -23,8 +26,8 @@ public class Enemy_Script : Character_Script
     {
 
     }
-    
-   // 총알 프리팹을 미리 생성하여 풀에 저장
+
+    // 총알 프리팹을 미리 생성하여 풀에 저장
     private void bulletPoolInit()
     {
         bulletPool = new GameObject[poolSize];
@@ -61,5 +64,16 @@ public class Enemy_Script : Character_Script
 
             //Debug.Log("firing bullet)");
         }
+    }
+    public override void Die()
+    {
+        if (UI_Manager.Instance != null)
+        {
+            UI_Manager.Instance.UpdatePlayerScoreUI(100);
+        }
+        // 죽음 처리 로직
+        Debug.Log(this.name.ToString() + "이(가) 죽었습니다.");
+        // 예를 들어, 오브젝트를 비활성화하거나 파괴할 수 있습니다.
+        this.gameObject.SetActive(false);
     }
 }
