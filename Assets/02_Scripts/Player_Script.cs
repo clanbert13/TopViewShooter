@@ -70,10 +70,21 @@ public class Player_Script : Character_Script
         // 총알 풀 초기화
         bulletPoolInit();
 
+<<<<<<< Updated upstream
         // 체력 UI 업데이트
         if (UI_Manager.Instance != null)
         {
             UI_Manager.Instance.UpdatePlayerHealthUI();
+=======
+        MinimapFollow mini = FindObjectOfType<MinimapFollow>();
+        if (mini != null)
+        {
+            mini.target = this.transform;
+        }
+        else
+        {
+            Debug.LogWarning("MinimapFollow 스크립트를 찾을 수 없습니다.");
+>>>>>>> Stashed changes
         }
     }
 
