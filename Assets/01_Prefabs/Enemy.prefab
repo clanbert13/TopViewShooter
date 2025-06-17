@@ -169,6 +169,7 @@ MonoBehaviour:
   bulletEndTime: 3
   damage: 1
   poolSize: 5
+  bulletType: 0
 --- !u!195 &8222353276234589200
 NavMeshAgent:
   m_ObjectHideFlags: 0

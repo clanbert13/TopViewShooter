@@ -8,6 +8,7 @@ public class Enemy_Script : Character_Script
     private GameObject[] bulletPool;       // 총알 풀
     public float damage = 1f;           // 총알 피해량
     public int poolSize = 5;             // 총알 풀의 크기
+    public int bulletType = 0; 
     
 
     void Start()
@@ -55,7 +56,7 @@ public class Enemy_Script : Character_Script
 
             // 총알 설정
             bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, damage, targetTag, bulletEndTime,
-                                        targetDirection, this.transform.position, 0);
+                                        targetDirection, this.transform.position, bulletType);
             bullet.SetActive(true); // 총알 활성화
 
             //Debug.Log("firing bullet)");

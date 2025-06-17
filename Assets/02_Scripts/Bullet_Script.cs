@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet_Script : MonoBehaviour
@@ -7,10 +6,10 @@ public class Bullet_Script : MonoBehaviour
     [SerializeField] private string targetTag;           //탄이 피해를 입힐 적의 tag
     [SerializeField] private float endTime = 10.0f;        //탄의 소멸 시간
     private Vector3 startAngle;    //탄의 시작 각도
-    [SerializeField] protected float speed = 5f;         //탄의 속도
-    [SerializeField] protected float frequency = 0f;     //탄의 흔들림 주기
-    [SerializeField] protected float amplitude = 0f;     //탄의 흔들림 진폭
-    [SerializeField] protected int moveType = 0;      //탄의 이동 패턴
+    [SerializeField] private float speed = 5f;         //탄의 속도
+    [SerializeField] private float frequency = 0f;     //탄의 흔들림 주기
+    [SerializeField] private float amplitude = 0f;     //탄의 흔들림 진폭
+    [SerializeField] private int moveType = 0;      //탄의 이동 패턴
 
     public float damage = 1f;           //탄의 피해량
 
@@ -50,7 +49,6 @@ public class Bullet_Script : MonoBehaviour
         {
             //복제(institate) & 삭제보다 활성화 & 비활성화가 더 빠릅니다.
             this.gameObject.SetActive(false);       //탄을 비활성화
-            timer = 0;
         }
     }
 
@@ -66,8 +64,15 @@ public class Bullet_Script : MonoBehaviour
             case 1:
                 //탄이 흔들리며 이동
                 //Debug.Log("곡선 이동 패턴입니다.");
-                transform.position += new Vector3(Mathf.Cos(timer * frequency)
-                                        * amplitude, 0, speed) * Time.deltaTime;
+                Vector3 perpendicularDirection = Vector3.Cross(transform.forward, Vector3.up).normalized;
+
+                // 흔들림 계산
+                float sway = Mathf.Cos(timer * frequency) * amplitude;
+                Vector3 swayOffset = perpendicularDirection * sway;
+
+                // 최종 계산 = 전진 + 흔들림
+                Vector3 finalMovement = (transform.forward * speed) + swayOffset;
+                transform.position += finalMovement * Time.deltaTime;
                 break;
             default:
                 Debug.Log("잘못된 이동 패턴입니다.");
@@ -81,7 +86,7 @@ public class Bullet_Script : MonoBehaviour
         if (other.gameObject.CompareTag("Wall")){
             this.gameObject.SetActive(false);
         }
-        
+
         if (other.gameObject.CompareTag(targetTag))
         {
             Debug.Log($"Bullet hit {other.gameObject.tag} ({other.gameObject.name})");
@@ -101,11 +106,5 @@ public class Bullet_Script : MonoBehaviour
             // 탄이 적에게 맞았을 때, 탄을 비활성화
             this.gameObject.SetActive(false);
         }
-    }
-    
-    private void OnDisable()
-    {
-        // 탄이 다시 풀에 돌아가거나 비활성화될 때 필요하다면 여기에 초기화 로직을 추가
-        timer = 0f; // 타이머 초기화
     }
 }
