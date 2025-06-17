@@ -122,6 +122,8 @@ public class Player_Script : Character_Script
         Vector3 lookDirection = playerCamera.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, 
                                         mouseScreenPosition.y, playerCamera.transform.position.y
                                                      - transform.position.y)) - transform.position;
+                                                     
+        lookDirection.Normalize(); // 방향 벡터 정규화
         lookDirection.y = 0f;         // y축은 0으로 고정하여 xz 평면에서 회전하도록 함
 
         this.transform.rotation = Quaternion.LookRotation(lookDirection);
@@ -143,15 +145,18 @@ public class Player_Script : Character_Script
         // 대시 쿨타임 로직
         yield return new WaitForSeconds(0.15f); // 대시 지속시간은 0.15초 
         playerRigidbody.linearVelocity = Vector3.zero; // 대시 후 속도 초기화
+        playerRigidbody.isKinematic = true; // isKinematic을 활성화하여 물리 엔진이 작동하도록 함
 
         yield return new WaitForSeconds(0.55f); // 대시 쿨타임
-        dashAction.Enable(); // 대시 액션 활성화
+        dashAction.Enable(); // 대시 액션 활성화 (다시 대시할 수 있도록 함)
     }
     public void Dash(Vector3 dashDirection)
     {
         //Debug.Log(playerDirection);
-        dashAction.Disable(); // 대시 액션 비활성화
-        dashDirection.Normalize();
+        dashAction.Disable(); // 대시 액션 비활성화 (쿨타임 동안 대시를 사용할 수 없도록 함)
+        dashDirection.Normalize();  // 대시 방향 벡터 정규화
+
+        playerRigidbody.isKinematic = false; // isKinematic을 비활성화하여 물리 엔진이 작동하도록 함
         // 대시 속도는 이동 속도의 3배
         playerRigidbody.AddForce(dashDirection * characterSpeed * 3f, ForceMode.Impulse); 
         
@@ -175,6 +180,7 @@ public class Player_Script : Character_Script
         {
             // 게임 오버
             Debug.Log(this.name.ToString() + "의 체력이 0이 되었습니다.");
+            Die();
         }
     }
 
