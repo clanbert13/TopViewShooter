@@ -274,7 +274,7 @@ public class Player_Script : Character_Script
         else
         {
             Debug.LogError("Player_Script: GameManager Instance not found!", this);
-            Time.timeScale = 0f; // GameManager가 없어도 최소한 시간은 멈춥니다.
+            Time.timeScale = 0f;
         }
     }
 
