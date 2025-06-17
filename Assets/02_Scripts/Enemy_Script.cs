@@ -8,7 +8,7 @@ public class Enemy_Script : Character_Script
     private GameObject[] bulletPool;       // 총알 풀
     public float damage = 1f;           // 총알 피해량
     public int poolSize = 5;             // 총알 풀의 크기
-    public int bulletType = 0; 
+    public int bulletType = 0;           // 총알 타입 (이동 형태)
     
 
     void Start()
@@ -52,7 +52,7 @@ public class Enemy_Script : Character_Script
         if (bullet != null)
         {
             // 이 오브젝트의 위치에서 플레이어의 위치를 향하는 벡터
-            Vector3 targetDirection = (targetPosition - this.transform.position).normalized; // .normalized를 사용하여 단위 벡터로 만듭니다.
+            Vector3 targetDirection = (targetPosition - this.transform.position).normalized;
 
             // 총알 설정
             bullet.GetComponent<Bullet_Script>().SetBullet(10f, 5f, 5f, damage, targetTag, bulletEndTime,

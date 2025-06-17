@@ -23,6 +23,10 @@ public class Bullet_Script : MonoBehaviour
     {
         timer += Time.deltaTime;
         ActiveTimer(); //탄의 활성화 시간 체크
+    }
+
+    void FixedUpdate()
+    {
         MovePattern(moveType);
     }
 
