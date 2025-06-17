@@ -1263,6 +1263,9 @@ MonoBehaviour:
   maxSpawnRadius: 20
   minSpawnRadius: 9
   spawnInterval: 3
+  mapMinBounds: {x: -50, y: -50}
+  mapMaxBounds: {x: 50, y: 50}
+  mapBoundaryCollider: {fileID: 1014297363}
 --- !u!1 &1493458669
 GameObject:
   m_ObjectHideFlags: 0
