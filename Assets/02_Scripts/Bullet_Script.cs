@@ -17,8 +17,7 @@ public class Bullet_Script : MonoBehaviour
 
     void Start()
     {
-        timer = 0.0f;
-        this.gameObject.SetActive(true); //탄을 활성화
+
     }
 
     void Update()
@@ -28,33 +27,22 @@ public class Bullet_Script : MonoBehaviour
         MovePattern(moveType);
     }
 
-    public Bullet_Script()
-    {
-        //Debug.Log("Bullet 기본 생성자 호출됨");
-    }
-
-    // 생성할때 해당 정보들 입력하시면 됩니다.
-    public Bullet_Script(float speed, float frequency, float amplitude,
-        string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
-    {
-        //Debug.Log("Bullet 생성자 호출됨");
-        SetBullet(speed, frequency, amplitude,
-        targetTag, endTime, startAngle, startPos, moveType);
-
-    }
-
-    public void SetBullet(float speed, float frequency, float amplitude,
+    // SetBullet 메서드는 탄의 속성들을 설정합니다.
+    public void SetBullet(float speed, float frequency, float amplitude, float damage,
             string targetTag, float endTime, Vector3 startAngle, Vector3 startPos, int moveType)
     {
+        timer = 0.0f;
         this.speed = speed;
         this.frequency = frequency;
         this.amplitude = amplitude;
+        this.damage = damage;
         this.targetTag = targetTag;
         this.endTime = endTime;
         this.startAngle = startAngle;
         this.moveType = moveType;
         this.transform.position = startPos; //탄의 시작 위치 설정
         this.transform.rotation = Quaternion.LookRotation(startAngle); //탄의 시작 각도 설정
+        this.gameObject.SetActive(true); //탄을 활성화
     }
     public void ActiveTimer()
     {
@@ -86,17 +74,38 @@ public class Bullet_Script : MonoBehaviour
                 break;
         }
     }
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Wall")){
+            this.gameObject.SetActive(false);
+        }
+        
         if (other.gameObject.CompareTag(targetTag))
         {
-            Debug.Log(other.gameObject.tag + "대상과 충돌했습니다.");
-            //충돌한 대상에게 피해
-            other.gameObject.GetComponent<Character_Script>().GetHit(damage);
+            Debug.Log($"Bullet hit {other.gameObject.tag} ({other.gameObject.name})");
 
-            this.gameObject.SetActive(false); //탄을 비활성화
+            // 탄이 적에게 맞았을 때, 적의 Character_Script를 찾아서 GetHit 메서드를 호출 (상속받은 스크립트들도 가능)
+            Character_Script character = other.gameObject.GetComponent<Character_Script>();
+
+            if (character != null)
+            {
+                character.GetHit(damage);
+            }
+            else
+            {
+                Debug.LogWarning($"Bullet hit {other.gameObject.name} (Tag: {targetTag}), but no Character_Script found.", other.gameObject);
+            }
+
+            // 탄이 적에게 맞았을 때, 탄을 비활성화
+            this.gameObject.SetActive(false);
         }
+    }
+    
+    private void OnDisable()
+    {
+        // 탄이 다시 풀에 돌아가거나 비활성화될 때 필요하다면 여기에 초기화 로직을 추가
+        timer = 0f; // 타이머 초기화
     }
 }
