@@ -48,6 +48,7 @@ public class UI_Manager : MonoBehaviour
     public void UpdatePlayerScoreUI(int addScore)
     {
         score += addScore;
+         GameManager.Instance.SetPlayerScore(score);
         if (playerScoreText != null)
         {
             playerScoreText.text = "SCORE : " + score.ToString();

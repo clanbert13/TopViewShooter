@@ -261,9 +261,21 @@ public class Player_Script : Character_Script
 
     public override void Die()
     {
-        Debug.Log("Player Died!");
-        // 죽음 처리 로직 (예: 오브젝트 비활성화, 게임 오버 화면, 애니메이션 트리거)
+        Debug.Log("Player Died! Initiating Game Over sequence.");
+        
+        // 1. 플레이어 오브젝트 비활성화 (선택 사항)
         gameObject.SetActive(false); 
+
+        // 2. GameManager에 점수 전달 및 게임 오버 처리 요청
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPlayerDied();
+        }
+        else
+        {
+            Debug.LogError("Player_Script: GameManager Instance not found!", this);
+            Time.timeScale = 0f; // GameManager가 없어도 최소한 시간은 멈춥니다.
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
