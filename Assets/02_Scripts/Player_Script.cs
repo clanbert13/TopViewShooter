@@ -53,6 +53,21 @@ public class Player_Script : Character_Script
         health = maxHealth;
         // 총알 풀 초기화
         bulletPoolInit();
+
+
+
+        
+
+        MinimapFollow mini = FindObjectOfType<MinimapFollow>();
+            if (mini != null)
+            {
+                mini.target = this.transform;
+            }
+            else
+            {
+                Debug.LogWarning("MinimapFollow 스크립트를 찾을 수 없습니다.");
+            }
+
     }
 
     private void Update()
