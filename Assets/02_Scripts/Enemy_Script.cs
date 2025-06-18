@@ -71,6 +71,10 @@ public class Enemy_Script : Character_Script
         {
             UI_Manager.Instance.UpdatePlayerScoreUI(100);
         }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddPlayerScore(100);
+        }
         // 죽음 처리 로직
         Debug.Log(this.name.ToString() + "이(가) 죽었습니다.");
         // 예를 들어, 오브젝트를 비활성화하거나 파괴할 수 있습니다.
