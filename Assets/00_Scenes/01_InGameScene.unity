@@ -477,7 +477,7 @@ Canvas:
   m_GameObject: {fileID: 355823815}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2348,8 +2348,8 @@ SceneRoots:
   - {fileID: 6084650270623414472}
   - {fileID: 1014297366}
   - {fileID: 355823819}
-  - {fileID: 492159821}
   - {fileID: 1329760700}
   - {fileID: 1754721064}
   - {fileID: 66771649}
   - {fileID: 999124436}
+  - {fileID: 492159821}

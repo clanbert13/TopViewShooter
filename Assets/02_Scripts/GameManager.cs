@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        playerScore = 0;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -44,9 +45,9 @@ public class GameManager : MonoBehaviour
     }
 
     // 플레이어의 현재 점수를 업데이트하는 함수 (UI_Manager나 Player_Script에서 호출)
-    public void SetPlayerScore(float score)
+    public void AddPlayerScore(float score)
     {
-        playerScore = score;
+        playerScore += score;
     }
 
     // 캐릭터가 죽었을 때 호출될 함수
